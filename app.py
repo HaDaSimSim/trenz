@@ -96,7 +96,7 @@ for tiktok in trending:
             time.sleep(15)
             pyautogui.write(tiktok['desc'] + ' #shorts')
             pyautogui.press('tab', presses=2)
-            pyautogui.write('Copyright {0}. {1}({2}), Tiktok all rights reserved.'.format(time.gmtime(tiktok['createTime']).tm_year, tiktok['author']['nickname'], tiktok['author']['uniqueId']))
+            pyautogui.write('Copyright {0}. {1}({2}), Tiktok all rights reserved. #tiktok #trend #trends #trending'.format(time.gmtime(tiktok['createTime']).tm_year, tiktok['author']['nickname'], tiktok['author']['uniqueId']))
             pyautogui.press('tab', presses=22)
             pyautogui.press('enter', presses=3)
             pyautogui.press('tab', presses=11)
