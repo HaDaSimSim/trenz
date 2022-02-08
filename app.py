@@ -11,9 +11,7 @@ import time
 import pyautogui
 import os
 import sys
-
-# 컴퓨터 계정 이름 적으세요
-USERNAME = '컴퓨터 계정 이름'
+import getpass
 
 # 구글계정 정보를 입력하세요 (Bright 브랜드 채널에 접근권한이 있는 계정만 가능)
 GMAIL = '지메일@gmail.com'
@@ -34,7 +32,7 @@ try:
     
 except FileNotFoundError:
     subprocess.Popen(r'C:\Users\{0}\AppData\Local\Google\Chrome\Application\chrome.exe --remote-debugging-port=9222 '
-                     r'--user-data-dir="C:\chrometemp"'.format(USERNAME))
+                     r'--user-data-dir="C:\chrometemp"'.format(getpass.getuser()))
 
 option = Options()
 option.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
