@@ -14,8 +14,8 @@ import sys
 import getpass
 
 # 구글계정 정보를 입력하세요 (Bright 브랜드 채널에 접근권한이 있는 계정만 가능)
-GMAIL = '@gmail.com'
-PASSWORD = ''
+GMAIL = '...@gmail.com'
+PASSWORD = '...'
 
 # Bright 브랜드 채널이 유튜브 계정 몇번째 칸에 있는지 입력하세요 (본 채널 바로 아래 Bright 브랜드 채널이 있다면 2, 그사이 한개 끼어있다면 3, ...)
 NTH = 2 # 난 두번째 있어서 기본값 2로함 ㅅㄱ
@@ -29,7 +29,6 @@ except FileNotFoundError:
 try:
     subprocess.Popen(r'C:\Program Files\Google\Chrome\Application\chrome.exe --remote-debugging-port=9222 '
                      r'--user-data-dir="C:\chrometemp"')
-    
 except FileNotFoundError:
     subprocess.Popen(r'C:\Users\{0}\AppData\Local\Google\Chrome\Application\chrome.exe --remote-debugging-port=9222 '
                      r'--user-data-dir="C:\chrometemp"'.format(getpass.getuser()))
@@ -112,7 +111,7 @@ for tiktok in trending:
         pyautogui.press('tab', presses=5)
         pyautogui.press('enter')
         time.sleep(1)
-        pyautogui.write(os.path.join(os.path.realpath(__file__)[0:len(os.path.realpath(__file__))-len(sys.argv[0])-1]))
+        pyautogui.write(os.path.join(os.path.realpath(__file__)[0:6]))
         time.sleep(1)
         pyautogui.press('enter')
         time.sleep(1)
@@ -129,3 +128,5 @@ for tiktok in trending:
         pyautogui.press('tab', presses=11)
         pyautogui.press('enter')
         time.sleep(15)
+
+driver.quit()
