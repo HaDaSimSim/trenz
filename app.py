@@ -14,8 +14,8 @@ import sys
 import getpass
 
 # 구글계정 정보를 입력하세요 (Bright 브랜드 채널에 접근권한이 있는 계정만 가능)
-GMAIL = '...@gmail.com'
-PASSWORD = '...'
+GMAIL = 'gmail@gmail.com'
+PASSWORD = 'pw'
 
 # Bright 브랜드 채널이 유튜브 계정 몇번째 칸에 있는지 입력하세요 (본 채널 바로 아래 Bright 브랜드 채널이 있다면 2, 그사이 한개 끼어있다면 3, ...)
 NTH = 2 # 난 두번째 있어서 기본값 2로함 ㅅㄱ
@@ -91,7 +91,7 @@ for tiktok in trending:
             pyautogui.press('tab', presses=2)
             pyautogui.press('enter')
             time.sleep(15)
-            pyautogui.write(tiktok['desc'] + ' #shorts')
+            pyautogui.write(tiktok['desc'][:98] + ' #shorts')
             pyautogui.press('tab', presses=2)
             pyautogui.write('Copyright {0}. {1}({2}), Tiktok all rights reserved. #tiktok #trend #trends #trending'.format(time.gmtime(tiktok['createTime']).tm_year, tiktok['author']['nickname'], tiktok['author']['uniqueId']))
             pyautogui.press('tab', presses=22)
