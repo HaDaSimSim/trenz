@@ -13,13 +13,19 @@ import os
 import sys
 import getpass
 
-# 구글계정 정보를 입력하세요 (Bright 브랜드 채널에 접근권한이 있는 계정만 가능)
 GMAIL = '...@gmail.com'
 PASSWORD = '...'
+NTH = 2
 
-# Bright 브랜드 채널이 유튜브 계정 몇번째 칸에 있는지 입력하세요 (본 채널 바로 아래 Bright 브랜드 채널이 있다면 2, 그사이 한개 끼어있다면 3, ...)
-NTH = 2 # 난 두번째 있어서 기본값 2로함 ㅅㄱ
-
+defaultTitle = [
+    'it\'s trending on tiktok xD',
+    'wow how do this??',
+    'it\'s so amazing!',
+    'cool :O',
+    'trending on tiktok now!',
+    'tiktok trend!',
+    'on trend'
+]
 
 try:
     shutil.rmtree(r"C:\chrometemp")
@@ -91,7 +97,14 @@ for tiktok in trending:
             pyautogui.press('tab', presses=2)
             pyautogui.press('enter')
             time.sleep(15)
-            pyautogui.write(tiktok['desc'][:98] + ' #shorts')
+            output = ''
+            for i in tiktok['desc'][:98].split(' '):
+                if not('#' in i):
+                    output += i + ' '
+
+            if output == '':
+                output = random.shuffle(defaultTitle[0])
+            pyautogui.write(output + '#shorts')
             pyautogui.press('tab', presses=2)
             pyautogui.write('Copyright {0}. {1}({2}), Tiktok all rights reserved. #tiktok #trend #trends #trending'.format(time.gmtime(tiktok['createTime']).tm_year, tiktok['author']['nickname'], tiktok['author']['uniqueId']))
             pyautogui.press('tab', presses=22)
@@ -101,32 +114,5 @@ for tiktok in trending:
             time.sleep(15)
         except:
             print('an error occurred during uploading a video.')
-    else:
-        urllib.request.urlretrieve(api.by_trending(count=1, custom_verifyFp="verify_kz9cm4r9_9LbXjQ6i_Stlc_4nIV_88M6_Rlp0zM9mtpx7")[0]['video']['downloadAddr'], 'tiktokVid.mp4')
-        driver.get('https://studio.youtube.com/channel/UCC_q1R0dWgpipXnt16AI58A/videos/upload?d=ud&filter=%5B%5D&sort=%7B%22columnType%22%3A%22date%22%2C%22sortOrder%22%3A%22DESCENDING%22%7D')
-        time.sleep(3)
-        pyautogui.press('tab', presses=3)
-        pyautogui.press('enter')
-        time.sleep(5)
-        pyautogui.press('tab', presses=5)
-        pyautogui.press('enter')
-        time.sleep(1)
-        pyautogui.write(os.path.join(os.path.realpath(__file__)[0:len(os.path.realpath(__file__))-len(sys.argv[0])-1]))
-        time.sleep(1)
-        pyautogui.press('enter')
-        time.sleep(1)
-        pyautogui.press('enter', presses=6)
-        pyautogui.write('tiktokVid.mp4')
-        pyautogui.press('tab', presses=2)
-        pyautogui.press('enter')
-        time.sleep(15)
-        pyautogui.write(tiktok['desc'] + ' #shorts')
-        pyautogui.press('tab', presses=2)
-        pyautogui.write('Copyright {0}. {1}({2}), Tiktok all rights reserved. #tiktok #trend #trends #trending'.format(time.gmtime(tiktok['createTime']).tm_year, tiktok['author']['nickname'], tiktok['author']['uniqueId']))
-        pyautogui.press('tab', presses=22)
-        pyautogui.press('enter', presses=3)
-        pyautogui.press('tab', presses=11)
-        pyautogui.press('enter')
-        time.sleep(15)
 
 driver.quit()
