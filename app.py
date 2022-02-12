@@ -104,7 +104,7 @@ for tiktok in trending:
 
             if output == '':
                 output = random.shuffle(defaultTitle[0])
-            pyautogui.write(output + '#shorts')
+            pyautogui.write(output + '#fyp #shorts')
             pyautogui.press('tab', presses=2)
             pyautogui.write('Copyright {0}. {1}({2}), Tiktok all rights reserved. #tiktok #trend #trends #trending'.format(time.gmtime(tiktok['createTime']).tm_year, tiktok['author']['nickname'], tiktok['author']['uniqueId']))
             pyautogui.press('tab', presses=22)
