@@ -12,6 +12,7 @@ import pyautogui
 import os
 import sys
 import getpass
+import random
 
 GMAIL = '...@gmail.com'
 PASSWORD = '...'
@@ -99,12 +100,49 @@ for tiktok in trending:
             time.sleep(15)
             output = ''
             for i in tiktok['desc'][:98].split(' '):
-                if not('#' in i):
+                if not('#' in i) and i.replace('.', '').replace(',', '') != '':
                     output += i + ' '
 
             if output == '':
                 output = random.shuffle(defaultTitle[0])
             pyautogui.write(output + '#fyp #shorts')
+            pyautogui.press('tab', presses=2)
+            pyautogui.write('Copyright {0}. {1}({2}), Tiktok all rights reserved. #tiktok #trend #trends #trending'.format(time.gmtime(tiktok['createTime']).tm_year, tiktok['author']['nickname'], tiktok['author']['uniqueId']))
+            pyautogui.press('tab', presses=22)
+            pyautogui.press('enter', presses=3)
+            pyautogui.press('tab', presses=11)
+            pyautogui.press('enter')
+            time.sleep(15)
+        except:
+            print('an error occurred during uploading a video.')
+    else:
+        try:
+            urllib.request.urlretrieve(tiktok['video']['downloadAddr'], 'tiktokVid.mp4')
+            driver.get('https://studio.youtube.com/channel/UCC_q1R0dWgpipXnt16AI58A/videos/upload?d=ud&filter=%5B%5D&sort=%7B%22columnType%22%3A%22date%22%2C%22sortOrder%22%3A%22DESCENDING%22%7D')
+            time.sleep(3)
+            pyautogui.press('tab', presses=3)
+            pyautogui.press('enter')
+            time.sleep(5)
+            pyautogui.press('tab', presses=5)
+            pyautogui.press('enter')
+            time.sleep(1)
+            pyautogui.write(os.path.join(os.path.realpath(__file__)[0:len(os.path.realpath(__file__))-len(sys.argv[0])-1]))
+            time.sleep(1)
+            pyautogui.press('enter')
+            time.sleep(1)
+            pyautogui.press('enter', presses=6)
+            pyautogui.write('tiktokVid.mp4')
+            pyautogui.press('tab', presses=2)
+            pyautogui.press('enter')
+            time.sleep(15)
+            output = ''
+            for i in tiktok['desc'][:98].split(' '):
+                if not('#' in i) and i.replace(',', '').replace('.', '') != '':
+                    output += i + ' '
+
+            if output == '':
+                output = random.shuffle(defaultTitle[0])
+            pyautogui.write('[FULL VER] ' + output + '#fyp')
             pyautogui.press('tab', presses=2)
             pyautogui.write('Copyright {0}. {1}({2}), Tiktok all rights reserved. #tiktok #trend #trends #trending'.format(time.gmtime(tiktok['createTime']).tm_year, tiktok['author']['nickname'], tiktok['author']['uniqueId']))
             pyautogui.press('tab', presses=22)
